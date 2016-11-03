@@ -66,7 +66,7 @@ if ( !function_exists('get_uploaded_picture') )
     function get_uploaded_picture($filename){
 
         $ext = end(explode(".",$filename));
-        $path = "../blog-ufiles/"+$filename;
+        $path = "../blog-ufiles/" . $filename;
 
         if($ext == "jpg"){
             header('Content-Type: image/jpeg');
