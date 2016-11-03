@@ -12,7 +12,7 @@ if ( !function_exists('custom_upload') )
         $config['upload_path'] = '../blog-ufiles/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         //$config['encrypt_name'] = 'TRUE'; // On le refait à la main en dessous
-        $config['max_filename'] = '21';
+        //$config['max_filename'] = '21';
         $config['max_size'] = '2048';
         $config['max_width'] = '1300';
         $config['max_height'] = '1300';
@@ -32,7 +32,7 @@ if ( !function_exists('custom_upload') )
             //$data['file_name'] = $_FILES['image']['name'];
 
             // On redimensionne l'image : 
-            /*
+            
 
             $CI->load->library('image_lib');
             $config['source_image'] = $CI->upload->upload_path.$config['file_name'];
@@ -53,7 +53,7 @@ if ( !function_exists('custom_upload') )
                 }
             }
             
-            */
+            
 
         endif;
 
