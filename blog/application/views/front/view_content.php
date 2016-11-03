@@ -14,9 +14,9 @@
                     <?php $mois  = date("m", strtotime($a_cdate)); ?>
                     <?php $annee = date("Y", strtotime($a_cdate)); ?>
                     <li><i class="icon-calendar"></i> <?php echo $jour . "/" . $mois . "/" . $annee; ?></li>
-                    <li><i class="icon-user"></i> <a href="#"><?php echo $username; ?></a></li>
+                    <li><i class="icon-user"></i> <a href="#"><?php echo htmlentities($username); ?></a></li>
                     <li><i class="icon-comment"></i> <a href="#">5 Comments</a></li>
-                    <li><i class="icon-tags"></i> <a href="<?php echo base_url($c_slug);?>"><?php echo $c_titre; ?></a></li>
+                    <li><i class="icon-tags"></i> <a href="<?php echo base_url($c_slug);?>"><?php echo htmlentities($c_titre); ?></a></li>
                 </ul>
             </div>
         </div>

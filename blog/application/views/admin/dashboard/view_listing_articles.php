@@ -27,9 +27,9 @@
         <?php foreach($articles->result() as $article) : ?>
         <tr>
             <td><?php echo $article->id; ?></td>
-            <td><?php echo $article->titre; ?></td>
-            <td><?php echo character_limiter($article->contenu, 40); ?></td>
-            <td><?php echo $article->ctitre; ?></td>
+            <td><?php echo htmlentities($article->titre); ?></td>
+            <td><?php echo htmlentities(character_limiter($article->contenu, 40)); ?></td>
+            <td><?php echo htmlentities($article->ctitre); ?></td>
             <td><?php echo $article->cdate; ?></td>
             <td><?php echo $article->udate; ?></td>
             <td><a href="<?php echo base_url('dashboard/articles/edit/' . $article->id); ?>"><i class="icon-pencil"></i></a></td>

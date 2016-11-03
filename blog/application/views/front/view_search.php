@@ -5,7 +5,7 @@
         <?php foreach($articles->result() as $article) : ?>
             
             <article class="clearfix">
-                <h4 class="title-bg"><a href="<?php echo base_url($article->cslug . '/' . $article->aslug); ?>"><?php echo $article->titre; ?></a></h4>
+                <h4 class="title-bg"><a href="<?php echo base_url($article->cslug . '/' . $article->aslug); ?>"><?php echo htmlentities($article->titre); ?></a></h4>
             </article>
     
         <?php endforeach; ?>

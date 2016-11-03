@@ -208,8 +208,8 @@ class Model_blog extends CI_Model {
         $data = array(
             'rubrique_id' => $cat_id,
             'user_id' => $userdata['id'],
-            'titre' => $titre,
-            'contenu' => $contenu,
+            'titre' => $titre, // Pas htmlentities(() car reprise code existant
+            'contenu' => $contenu, // Pas htmlentities(() car reprise code existant
             'cdate' => $date->format('Y-m-d H:i:s'),
             'udate' => $date->format('Y-m-d H:i:s'),
             'slug' => $slug,

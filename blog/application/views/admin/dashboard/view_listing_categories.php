@@ -24,8 +24,8 @@
         <?php foreach($categories->result() as $category) : ?>
         <tr>
             <td><?php echo $category->id; ?></td>
-            <td><?php echo $category->titre; ?></td>
-            <td><?php echo $category->description; ?></td>
+            <td><?php echo htmlentities($category->titre); ?></td>
+            <td><?php echo htmlentities($category->description); ?></td>
             <td><a href="<?php echo base_url('dashboard/categories/edit/' . $category->id); ?>"><i class="icon-pencil"></i></a></td>
             <td><a href="<?php echo base_url('dashboard/categories/delete/' . $category->id); ?>" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette catégorie ?'));"><i class="icon-trash"></i></a></td>
         </tr>
