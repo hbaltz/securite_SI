@@ -11,7 +11,7 @@
         <?php foreach($articles->result() as $article): ?>
 
             <article class="clearfix">
-                <a href="<?php echo base_url($article->cslug . '/' . $article->aslug); ?>"><img src="<?php echo base_url('uploaded_files/' . $article->image); ?>" alt="Post Thumb" class="align-left article-image"></a>
+                <a href="<?php echo base_url($article->cslug . '/' . $article->aslug); ?>"><img src="<?php echo base_url('get_uploaded_picture/' . $article->image); ?>" alt="Post Thumb" class="align-left article-image"></a>
                 <h4 class="title-bg"><a href="<?php echo base_url($article->cslug . '/' . $article->aslug); ?>"><?php echo htmlentities($article->titre); ?></a></h4>
                 <p><?php echo htmlentities(character_limiter($article->contenu, 450)); ?> <a href="<?php echo base_url($article->cslug) . '/' . $article->aslug; ?>">[More]</a></p>
                     <div class="post-summary-footer">

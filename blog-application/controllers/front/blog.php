@@ -138,4 +138,13 @@ class Blog extends CI_Controller {
         $this->load->view('front/view_layout', $data);
     }
 
+    public function get_uploaded_picture($filename){
+        $this->load->helper('upload');
+
+        if( ! get_uploaded_picture($filename)){
+            header("HTTP/1.1 404 Not found");
+        }
+    }
+
 }
+
