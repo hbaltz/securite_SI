@@ -1,11 +1,11 @@
 <div class="span8 blog">
     <article>
-        <h3 class="title-bg"><a href="#"><?php echo $title; ?></a></h3>
+        <h3 class="title-bg"><a href="#"><?php echo htmlentities($title); ?></a></h3>
         <div class="post-content">
             <a href="#"><img src="<?php echo base_url("uploaded_files/" . $image); ?>" alt="Post Thumb"></a>
 
             <div class="post-body">
-                <?php echo $a_content; ?>
+                <?php echo htmlentities($a_content); ?>
             </div>
 
             <div class="post-summary-footer">
