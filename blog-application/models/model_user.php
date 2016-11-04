@@ -10,6 +10,7 @@ class Model_user extends CI_Model {
      *  cet email n'existe déjà)
      */
     public function register($username, $password, $email) {
+
         $password = $this->password_hash($password);
 
         $data = array(
@@ -20,6 +21,7 @@ class Model_user extends CI_Model {
 
         $this->db->insert('user', $data);
         return true;
+
     }
 
     public function send_activation_token($username) {
@@ -173,6 +175,27 @@ class Model_user extends CI_Model {
 
     public function password_verify($password,$hash){
         return password_verify($password,$hash);
+    }
+
+    /**
+     * Retrouve un user à l'aide du nom
+     */
+    public function userByName($username) {
+
+        $this->db->select('*')
+                 ->from('user')
+                 ->where('username', $username)
+                 ->limit(1);
+
+        return $this->db->get()->row();
+
+    }
+
+     /**
+     * Insere un user dans la bd
+     */
+    public function insertUser($username) {
+        return $this->register($username,0,0);
     }
 
 }

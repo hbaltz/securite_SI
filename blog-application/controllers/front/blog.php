@@ -17,6 +17,7 @@ class Blog extends CI_Controller {
     }
 
     public function index($num_page = 1) {
+
         $data['page'] = 'home';
 
         if($num_page > 1) {

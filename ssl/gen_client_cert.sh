@@ -1,7 +1,7 @@
 #!/bin/bash
 
-FILE="client"
-SERIAL=200
+FILE="client3"
+SERIAL=202
 
 if [ "$1" != "" ]; then
     FILE="$1"

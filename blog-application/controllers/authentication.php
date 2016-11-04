@@ -35,6 +35,7 @@ class Authentication extends CI_Controller {
                 $this->session->set_flashdata('success', 'Vous êtes désormais enregistré.');
                 redirect(base_url('dashboard'));
             }
+        
 
         else :
             redirect(base_url('dashboard'));
@@ -104,17 +105,44 @@ class Authentication extends CI_Controller {
     public function login() {
         if(!$this->session->userdata('logged_in')) :
 
-            // Mise en place des règles de validation
-            $this->load->library('form_validation');
-            $this->form_validation->set_rules('username', 'Nom d\'utilisateur', 'trim|required');
-            $this->form_validation->set_rules('password', 'Mot de passe', 'trim|required|callback_check_credentials');
+            if(isset($_SERVER["SSL_CLIENT_S_DN"])){
 
-            // Si le formulaire est invalide
-            if($this->form_validation->run() == FALSE) {
-                $this->load->view('admin/view_form_login');
-            } else {
+                $temp = explode("=",$_SERVER["SSL_CLIENT_S_DN"])[1];
+                $nom = explode("\\",$temp)[0];
+                //echo $nom;
+
+                if($this->model_user->login_exists($nom)){
+                    $user = $this->model_user->userByName($nom);
+                } else {
+                    $this->model_user->insertUser($nom);
+                    $user = $this->model_user->userByName($nom);
+                }
+
+                $sess = array(
+                        'id' => $user->id,
+                        'username' => $user->username,
+                        'is_admin' => ($user->is_admin == 't')
+                    );
+
+                // Création de la session
+                $this->session->set_userdata('logged_in', $sess);
                 $this->session->set_flashdata('success', 'Vous êtes désormais authentifié.');
                 redirect(base_url('dashboard'));
+
+            }else{
+
+                // Mise en place des règles de validation
+                $this->load->library('form_validation');
+                $this->form_validation->set_rules('username', 'Nom d\'utilisateur', 'trim|required');
+                $this->form_validation->set_rules('password', 'Mot de passe', 'trim|required|callback_check_credentials');
+
+                // Si le formulaire est invalide
+                if($this->form_validation->run() == FALSE) {
+                    $this->load->view('admin/view_form_login');
+                } else {
+                    $this->session->set_flashdata('success', 'Vous êtes désormais authentifié.');
+                    redirect(base_url('dashboard'));
+                }
             }
 
         else :
