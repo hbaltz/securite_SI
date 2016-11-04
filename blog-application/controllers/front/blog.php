@@ -1,5 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
 class Blog extends CI_Controller {
 
     public function __construct()
@@ -145,6 +146,5 @@ class Blog extends CI_Controller {
             header("HTTP/1.1 404 Not found");
         }
     }
-
 }
 

@@ -1,5 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+include(APPPATH.'libraries/password.php');
+
 class Model_user extends CI_Model {
 
     /**
@@ -8,6 +10,8 @@ class Model_user extends CI_Model {
      *  cet email n'existe déjà)
      */
     public function register($username, $password, $email) {
+        $password = $this->password_hash($password);
+
         $data = array(
             'username' => $username,
             'email' => $email,
@@ -157,6 +161,11 @@ class Model_user extends CI_Model {
         } else {
             return false;
         }
+    }
+
+
+    public function password_hash($password){
+        return password_hash($password, PASSWORD_BCRYPT);
     }
 
 }
