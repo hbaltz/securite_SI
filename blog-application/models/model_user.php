@@ -47,7 +47,7 @@ class Model_user extends CI_Model {
         }
 
         // 3) Preparation du token et enregistrement dans la BDD ?
-        $token = base64_encode(mcrypt_create_iv($config['activation_token_len'], MCRYPT_DEV_URANDOM));
+        $token = base64_encode(mcrypt_create_iv($config['activation_token_len'], MCRYPT_DEV_URANDOM)); // Necessite la librairie php5-mcrypt
 
         $this->db->set('user_id', $userdata->id);
         $this->db->set('token', $token);
@@ -113,14 +113,17 @@ class Model_user extends CI_Model {
         $this->db->select('*')
                  ->from('user')
                  ->where('username', $username)
-                 ->where('password', $password)
                  ->where('activated', '1')
                  ->limit(1);
 
         $query = $this->db->get();
 
         if($query->num_rows() == 1) {
-            return $query->row();
+            $row = $query->row();
+            if($this->password_verify($password,$row->password))
+                return $row;
+            else
+                return false;
         } else {
             return false;
         }
@@ -166,6 +169,10 @@ class Model_user extends CI_Model {
 
     public function password_hash($password){
         return password_hash($password, PASSWORD_BCRYPT);
+    }
+
+    public function password_verify($password,$hash){
+        return password_verify($password,$hash);
     }
 
 }
